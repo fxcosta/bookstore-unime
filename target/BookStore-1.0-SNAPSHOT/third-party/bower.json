@@ -1,0 +1,29 @@
+{
+  "name": "HeyUpload",
+  "description": "Site para upload de arquivos em geral",
+  "main": "index.php",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "Upload",
+    "Files",
+    "Download",
+    "Pictures"
+  ],
+  "authors": [
+    "Lucas Reis"
+  ],
+  "license": "MIT",
+  "homepage": "www.heyupload.us",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "metro": "3.0.13"
+  }
+}

@@ -1,0 +1,15 @@
+com/mycompany/bookstore/entity/Borrowing.class
+com/mycompany/bookstore/entity/BookCategory.class
+com/mycompany/bookstore/util/HibernateUtil.class
+com/mycompany/bookstore/entity/User.class
+com/mycompany/bookstore/entity/Book.class
+com/mycompnay/bookstore/dao/GenericDAO.class
+com/mycompnay/bookstore/dao/AbstractDao.class
+com/mycompany/bookstore/entity/Order.class
+com/mycompany/bookstore/entity/Address.class
+com/mycompany/bookstore/util/ResourcesProducer.class
+com/mycompany/bookstore/entity/Category.class
+com/mycompany/bookstore/bean/BookBean.class
+com/mycompnay/bookstore/dao/BookDao.class
+com/mycompany/bookstore/entity/BaseEntity.class
+com/mycompany/bookstore/entity/BookItem.class
