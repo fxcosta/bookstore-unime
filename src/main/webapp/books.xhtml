@@ -24,7 +24,13 @@
         <br/>
         
         <div>
-        <h:form id="form">
+        <h:form>
+            <p:commandButton value="Novo Livro" id="new-book" actionListener="#{bookBean.newBook}" styleClass="ui-priority-primary" />
+        </h:form>
+            
+            <br/>
+            
+        
             <p:dataGrid var="book" value="#{bookBean.books}" columns="3" layout="grid"
                 rows="12" paginator="true" id="books"
                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -40,10 +46,10 @@
 
                         <h:outputText value="#{book.name}" />
 
-                        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+<!--                        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
                             <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
                             <f:setPropertyActionListener value="#{book}" target="#{bookBean.selectBook}" />
-                        </p:commandLink>
+                        </p:commandLink>-->
                     </h:panelGrid>
                 </p:panel>
 
@@ -70,7 +76,8 @@
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
-        </h:form>
+        
+            
         </div>
         
     </h:body>

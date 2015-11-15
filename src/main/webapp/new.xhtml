@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>LibLix BookStore</title>
+        <link type='text/css' href="css/util.css" rel="stylesheet"/>
+        <link type='text/css' href="css/home.css" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/home.js"></script>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" life="2000"/>
+		<h:form id="form">
+			<p:fieldset legend="Dados do Produto">
+				<p:panelGrid columns="2">
+					<p:outputLabel id="name" value="Nome: " />
+                                        <p:inputText value="#{bookBean.bookEntity.name}"
+						required="true" />
+
+<!--					<p:outputLabel id="provider" value="Fornecedor: " />
+					<p:selectOneMenu for="provider"
+						value="#{productBean.product.provider.id}" required="true">
+						<f:selectItem noSelectionOption="true" itemLabel="Selecione..." />
+						<f:selectItems value="#{productBean.providers}" var="provider"
+							itemLabel="#{provider.name}" itemValue="#{provider.id}" />
+					</p:selectOneMenu>-->
+
+					<p:outputLabel id="isbn" value="ISBN: " />
+                                        <p:inputText value="#{bookBean.bookEntity.isbn}"
+						required="true" />
+
+					<p:outputLabel id="quantity" value="Quantidade: " />
+                                        <p:inputText value="#{bookBean.bookEntity.quantity}"
+						required="true" />
+
+					<p:outputLabel id="maxtime" value="Tempo máximo de uso: " />
+                                        <p:inputText value="#{bookBean.bookEntity.maxTime}"
+						required="true" />
+<!--
+					<p:outputLabel id="category" value="Categoria: " />
+					<p:selectOneMenu for="category"
+						value="#{productBean.product.category}" required="true">
+						<f:selectItem noSelectionOption="true" itemLabel="Selecione..." />
+						<f:selectItems value="#{productBean.categories}" var="category"
+							itemLabel="#{category.description}" itemValue="#{category}" />
+					</p:selectOneMenu>-->
+
+					<p:commandButton value="Cadastrar"
+                                                         actionListener="#{bookBean.save}" update="@form :table" rendered="#{empty bookBean.bookEntity.id}"/>
+						
+					<p:commandButton value="Editar"
+						actionListener="#{bookBean.edit}" update="@form :growl :table" rendered="#{not empty bookBean.bookEntity.id}"/>
+						
+				</p:panelGrid>
+			</p:fieldset>
+		</h:form>
+		
+            <p:dataTable id="table" value="#{bookBean.books}"
+			emptyMessage="Nenhum Produto Cadastro" var="book"
+			style="padding-top: 20px;">
+
+			<p:column headerText="Nome" style="text-align: center;">
+                            <h:outputText value="#{book.name}" />
+			</p:column>
+
+			<p:column headerText="Valor" style="text-align: center;">
+				<h:outputText value="R$ #{book.name}" />
+			</p:column>
+
+			<p:column headerText="Quantidade" style="text-align: center;">
+				<h:outputText value="#{book.name} unidade(s)" />
+			</p:column>
+
+			<p:column headerText="Fornecedor" style="text-align: center;">
+				<h:outputText value="#{book.name}" />
+			</p:column>
+
+			<p:column style="text-align: center;">
+<!--				<h:form>
+					<p:commandButton id="btnEdit" value="Editar" actionListener="#{productBean.load(product.id)}" update=":form"/>
+					<p:commandButton id="btnDelete" value="Remover" actionListener="#{productBean.remove(product.id)}" update=":growl :table"/>
+				</h:form>-->
+			</p:column>
+		</p:dataTable>
+        
+    </h:body>
+    <footer>
+        <script>
+            removePanelGridBorder("books");
+        </script>
+    </footer>
+</html>
+

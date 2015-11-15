@@ -10,22 +10,28 @@ import com.mycompnay.bookstore.dao.BookDao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 
 /**
  *
  * @author fx3costa
  */
 @ManagedBean(name="bookBean")
-@RequestScoped
+@ViewScoped
 public class BookBean implements Serializable {    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
     public List<Book> books;
+
+    public Book bookEntity;
     
     private Book selectBook;
     
@@ -33,13 +39,12 @@ public class BookBean implements Serializable {
     public BookDao dao;
     
     public BookBean() {
-        
         dao = new BookDao();
-        
-        books = new ArrayList<>();
-        books.add(new Book(1, "3232", "Nome", 23, "43"));
-        books.add(new Book(1, "111", "fdfds", 23, "43"));
-        books.add(new Book(1, "2444", "fdsfds", 23, "43"));
+    }
+    
+    @PostConstruct
+    public void init() {
+        newBookEntity();
     }
 
     public BookDao getDao() {
@@ -54,11 +59,34 @@ public class BookBean implements Serializable {
         return dao.getBooks();
     }
     
+    public Book getBookEntity() {
+        return bookEntity;
+    }
+
+    public void setBookEntity(Book book) {
+        this.bookEntity = book;
+    }
+    
     public Book getSelectBook() {
         return selectBook;
     }
 
     public void setSelectBook(Book selectBook) {
         this.selectBook = selectBook;
+    }
+    
+    public String newBook(ActionEvent actionEvent) {
+        bookEntity = new Book();
+        return "new";
+    }
+    
+    public void save() {
+        System.out.println(bookEntity.getName());
+        dao.save(bookEntity);
+        newBookEntity();
+    }
+    
+    public void newBookEntity() {
+        this.bookEntity = new Book();
     }
 }
