@@ -42,13 +42,12 @@ public class BookBean implements Serializable {
     
     public BookBean() {
         dao = new BookDao();
-        this.bookEntity = new Book();
-        //newBookEntity();
+        newBookEntity();
     }
     
-    //@PostConstruct
+    @PostConstruct
     public void init() {
-        //newBookEntity();
+        newBookEntity();
     }
 
     public BookDao getDao() {
@@ -83,6 +82,22 @@ public class BookBean implements Serializable {
         System.out.println(bookEntity.getName());
         dao.save(this.bookEntity);
         newBookEntity();    
+    }
+    
+    public void edit() {
+        dao.update(this.bookEntity);
+        newBookEntity();
+    }
+    
+    public void load(Integer id) {
+        this.bookEntity = dao.getById(id);
+    }
+    
+    public void remove(Integer id) {
+        Book b = dao.getById(id);
+        if (b != null) {
+            dao.delete(b);
+        }
     }
     
     public void newBookEntity() {

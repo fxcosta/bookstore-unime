@@ -81,10 +81,10 @@
 			</p:column>
 
 			<p:column style="text-align: center;">
-<!--				<h:form>
-					<p:commandButton id="btnEdit" value="Editar" actionListener="#{productBean.load(product.id)}" update=":form"/>
-					<p:commandButton id="btnDelete" value="Remover" actionListener="#{productBean.remove(product.id)}" update=":growl :table"/>
-				</h:form>-->
+				<h:form>
+                                    <p:commandButton id="btnEdit" value="Editar" actionListener="#{bookBean.load(book.id)}" update=":form"/>
+                                    <p:commandButton id="btnDelete" value="Remover" actionListener="#{bookBean.remove(book.id)}" update=":growl :table"/>
+				</h:form>
 			</p:column>
 		</p:dataTable>
         

@@ -37,7 +37,9 @@ public class AbstractDao<PK, T> {
 	}
 
 	public void delete(T entity) {
-		entityManager.remove(entity);
+                entityManager.getTransaction().begin();
+		entityManager.remove(entityManager.merge(entity));
+                entityManager.getTransaction().commit();
 	}
 
 	public List<T> findAll() {
