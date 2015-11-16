@@ -38,19 +38,19 @@ public class HibernateUtil {
     
     private static SessionFactory instance = null;
     
-    public static SessionFactory getSessionFactory(){
-        if(instance == null)
-            createInstance();
-        
-        return instance;
-    }
-    
-    private synchronized static void createInstance() {
-        if(instance != null)
-            return;
-        
-        instance = new Configuration().configure().buildSessionFactory();
-    }
+//    public static SessionFactory getSessionFactory(){
+//        if(instance == null)
+//            createInstance();
+//        
+//        return instance;
+//    }
+//    
+//    private synchronized static void createInstance() {
+//        if(instance != null)
+//            return;
+//        
+//        instance = new Configuration().configure().buildSessionFactory();
+//    }
     
     private static EntityManagerFactory factory;
     static {

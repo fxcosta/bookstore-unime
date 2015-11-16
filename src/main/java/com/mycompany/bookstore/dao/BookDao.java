@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompnay.bookstore.dao;
+package com.mycompany.bookstore.dao;
 
 import com.mycompany.bookstore.entity.Book;
 import com.mycompany.bookstore.util.HibernateUtil;
@@ -23,8 +23,8 @@ public class BookDao extends AbstractDao<Integer, Book> {
         return super.findAll();
     }
     
-    @Override
-    public void save(Book entity) {
-        super.save(entity);
-    }
+//    @Override
+//    public void save(Book entity) {
+//        super.save(entity);
+//    }
 }

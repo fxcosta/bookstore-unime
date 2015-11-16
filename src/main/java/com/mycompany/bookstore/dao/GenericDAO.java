@@ -1,4 +1,4 @@
-package com.mycompnay.bookstore.dao;
+package com.mycompany.bookstore.dao;
 
 import com.mycompany.bookstore.entity.BaseEntity;
 import com.mycompany.bookstore.entity.Order;

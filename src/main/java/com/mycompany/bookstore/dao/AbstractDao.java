@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompnay.bookstore.dao;
+package com.mycompany.bookstore.dao;
 
 import com.mycompany.bookstore.util.HibernateUtil;
 import java.lang.reflect.ParameterizedType;
@@ -27,7 +27,9 @@ public class AbstractDao<PK, T> {
 	}
 
 	public void save(T entity) {
-		entityManager.persist(entity);
+            entityManager.getTransaction().begin();
+            entityManager.persist(entity);
+            entityManager.getTransaction().commit();
 	}
 
 	public void update(T entity) {

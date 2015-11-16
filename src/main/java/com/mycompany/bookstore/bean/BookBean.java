@@ -6,7 +6,7 @@
 package com.mycompany.bookstore.bean;
 
 import com.mycompany.bookstore.entity.Book;
-import com.mycompnay.bookstore.dao.BookDao;
+import com.mycompany.bookstore.dao.BookDao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,8 @@ public class BookBean implements Serializable {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
+    private static final long serialVersionUID = 1L;
+    
     public List<Book> books;
 
     public Book bookEntity;
@@ -40,11 +42,13 @@ public class BookBean implements Serializable {
     
     public BookBean() {
         dao = new BookDao();
+        this.bookEntity = new Book();
+        //newBookEntity();
     }
     
-    @PostConstruct
+    //@PostConstruct
     public void init() {
-        newBookEntity();
+        //newBookEntity();
     }
 
     public BookDao getDao() {
@@ -75,15 +79,10 @@ public class BookBean implements Serializable {
         this.selectBook = selectBook;
     }
     
-    public String newBook(ActionEvent actionEvent) {
-        bookEntity = new Book();
-        return "new";
-    }
-    
     public void save() {
         System.out.println(bookEntity.getName());
-        dao.save(bookEntity);
-        newBookEntity();
+        dao.save(this.bookEntity);
+        newBookEntity();    
     }
     
     public void newBookEntity() {
