@@ -78,21 +78,21 @@ public class BookBean implements Serializable {
         this.selectBook = selectBook;
     }
     
-    public void save() {
-        System.out.println(bookEntity.getName());
+    public String save() {
         dao.save(this.bookEntity);
-        newBookEntity();    
+        newBookEntity();
+        return "index?faces-redirect=true";
     }
     
     public String edit() {
         dao.update(this.bookEntity);
         newBookEntity();
-        return "index";
+        return "index?faces-redirect=true";
     }
     
     public String load(Integer id) {
         this.bookEntity = dao.getById(id);
-        return "new";
+        return "new?faces-redirect=true";
     }
     
     public void remove(Integer id) {

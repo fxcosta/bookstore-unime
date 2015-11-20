@@ -51,7 +51,7 @@
 					</p:selectOneMenu>-->
 
 					<p:commandButton value="Cadastrar"
-                                                         actionListener="#{bookBean.save}" update="" rendered="#{empty bookBean.bookEntity.id}"/>
+                                                         action="#{bookBean.save}" update="" rendered="#{empty bookBean.bookEntity.id}"/>
 						
 					<p:commandButton value="Editar"
 						action="#{bookBean.edit}" update="" rendered="#{not empty bookBean.bookEntity.id}"/>
