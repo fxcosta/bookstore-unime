@@ -17,7 +17,7 @@
         <p:growl id="growl" life="2000"/>
 		<h:form id="form">
 			<p:fieldset legend="Dados do Produto">
-				<p:panelGrid columns="2">
+				<p:panelGrid columns="1">
 					<p:outputLabel id="name" value="Nome: " />
                                         <p:inputText value="#{bookBean.bookEntity.name}"
 						required="true" />
@@ -51,43 +51,15 @@
 					</p:selectOneMenu>-->
 
 					<p:commandButton value="Cadastrar"
-                                                         actionListener="#{bookBean.save}" update="@form :table" rendered="#{empty bookBean.bookEntity.id}"/>
+                                                         actionListener="#{bookBean.save}" update="" rendered="#{empty bookBean.bookEntity.id}"/>
 						
 					<p:commandButton value="Editar"
-						actionListener="#{bookBean.edit}" update="@form :growl :table" rendered="#{not empty bookBean.bookEntity.id}"/>
+						action="#{bookBean.edit}" update="" rendered="#{not empty bookBean.bookEntity.id}"/>
 						
 				</p:panelGrid>
 			</p:fieldset>
 		</h:form>
-		
-            <p:dataTable id="table" value="#{bookBean.books}"
-			emptyMessage="Nenhum Produto Cadastro" var="book"
-			style="padding-top: 20px;">
 
-			<p:column headerText="Nome" style="text-align: center;">
-                            <h:outputText value="#{book.name}" />
-			</p:column>
-
-			<p:column headerText="Valor" style="text-align: center;">
-				<h:outputText value="R$ #{book.name}" />
-			</p:column>
-
-			<p:column headerText="Quantidade" style="text-align: center;">
-				<h:outputText value="#{book.name} unidade(s)" />
-			</p:column>
-
-			<p:column headerText="Fornecedor" style="text-align: center;">
-				<h:outputText value="#{book.name}" />
-			</p:column>
-
-			<p:column style="text-align: center;">
-				<h:form>
-                                    <p:commandButton id="btnEdit" value="Editar" actionListener="#{bookBean.load(book.id)}" update=":form"/>
-                                    <p:commandButton id="btnDelete" value="Remover" actionListener="#{bookBean.remove(book.id)}" update=":growl :table"/>
-				</h:form>
-			</p:column>
-		</p:dataTable>
-        
     </h:body>
     <footer>
         <script>

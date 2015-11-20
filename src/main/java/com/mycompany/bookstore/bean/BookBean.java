@@ -24,7 +24,7 @@ import javax.faces.event.ActionListener;
  * @author fx3costa
  */
 @ManagedBean(name="bookBean")
-@ViewScoped
+@SessionScoped
 public class BookBean implements Serializable {    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -84,13 +84,15 @@ public class BookBean implements Serializable {
         newBookEntity();    
     }
     
-    public void edit() {
+    public String edit() {
         dao.update(this.bookEntity);
         newBookEntity();
+        return "index";
     }
     
-    public void load(Integer id) {
+    public String load(Integer id) {
         this.bookEntity = dao.getById(id);
+        return "new";
     }
     
     public void remove(Integer id) {
