@@ -22,13 +22,14 @@
                                         <p:inputText value="#{bookBean.bookEntity.name}"
 						required="true" />
 
-<!--					<p:outputLabel id="provider" value="Fornecedor: " />
-					<p:selectOneMenu for="provider"
-						value="#{productBean.product.provider.id}" required="true">
-						<f:selectItem noSelectionOption="true" itemLabel="Selecione..." />
-						<f:selectItems value="#{productBean.providers}" var="provider"
-							itemLabel="#{provider.name}" itemValue="#{provider.id}" />
-					</p:selectOneMenu>-->
+					<p:outputLabel id="category" value="Categorias " />
+                                        <p:selectManyCheckbox  
+                                            value="#{bookBean.selectedCategories}" 
+                                            layout="pageDirection" id="categories">  
+                                            <f:selectItems value="#{bookBean.categories}"  
+                                                var="category" itemLabel="#{category.name}"  
+                                                itemValue="#{category}"></f:selectItems>
+                                            </p:selectManyCheckbox>  
 
 					<p:outputLabel id="isbn" value="ISBN: " />
                                         <p:inputText value="#{bookBean.bookEntity.isbn}"
@@ -41,6 +42,10 @@
 					<p:outputLabel id="maxtime" value="Tempo máximo de uso: " />
                                         <p:inputText value="#{bookBean.bookEntity.maxTime}"
 						required="true" />
+                                        
+                                        <p:outputLabel id="price" value="Preço: " />
+                                        <p:inputText value="#{bookBean.bookEntity.price}"
+					required="true" />
 <!--
 					<p:outputLabel id="category" value="Categoria: " />
 					<p:selectOneMenu for="category"
@@ -52,9 +57,11 @@
 
 					<p:commandButton value="Cadastrar"
                                                          action="#{bookBean.save}" update="" rendered="#{empty bookBean.bookEntity.id}"/>
-						
+					
 					<p:commandButton value="Editar"
 						action="#{bookBean.edit}" update="" rendered="#{not empty bookBean.bookEntity.id}"/>
+                                        
+                                        <p:button value="Cancelar" outcome="index?faces-redirect=true"></p:button>
 						
 				</p:panelGrid>
 			</p:fieldset>

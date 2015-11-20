@@ -5,8 +5,6 @@
  */
 package com.mycompany.bookstore.bean;
 
-import com.mycompany.bookstore.entity.Book;
-import com.mycompany.bookstore.dao.BookDao;
 import com.mycompany.bookstore.dao.CategoryDao;
 import com.mycompany.bookstore.entity.Category;
 import java.io.Serializable;
@@ -21,94 +19,70 @@ import javax.faces.context.FacesContext;
  *
  * @author fx3costa
  */
-@ManagedBean(name="bookBean")
+@ManagedBean(name="categoryBean")
 @SessionScoped
-public class BookBean implements Serializable {    
+public class CategoryBean implements Serializable {    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
     private static final long serialVersionUID = 1L;
     
-    public List<Book> books;
+    public List<Category> categories;
 
-    public Book bookEntity;
+    public Category categoryEntity;
     
-    private Book selectBook;
-    
-    private List<Category> selectCategories;
-
-//    public Category[] getSelectCategories() {
-//        return selectCategories;
-//    }
-//
-//    public void setSelectCategories(Category[] selectCategories) {
-//        this.selectCategories = selectCategories;
-//    }
-
-    public List<Category> getSelectedCategories() {
-        return selectCategories;
-    }
-
-    public void setSelectedCategories(List<Category> selectedCities) {
-        this.selectCategories = selectedCities;
-    }
-    
+    private Category selectCategory;
     
     //@ManagedProperty(value="#{BookDao}")
-    public BookDao dao;
+    public CategoryDao dao;
     
-    public BookBean() {
-        dao = new BookDao();
-        newBookEntity();
+    public CategoryBean() {
+        dao = new CategoryDao();
+        newCatEntity();
     }
     
     @PostConstruct
     public void init() {
-        newBookEntity();
+        newCatEntity();
     }
 
-    public BookDao getDao() {
+    public CategoryDao getDao() {
         return dao;
     }
 
-    public void setDao(BookDao dao) {
+    public void setDao(CategoryDao dao) {
         this.dao = dao;
     }
     
-    public List<Book> getBooks() {
-        return dao.getBooks();
-    }
-    
     public List<Category> getCategories() {
-        return new CategoryDao().getCategories();
+        return dao.getCategories();
     }
     
-    public Book getBookEntity() {
-        return bookEntity;
+    public Category getCategoryEntity() {
+        return categoryEntity;
     }
 
-    public void setBookEntity(Book book) {
-        this.bookEntity = book;
+    public void setCategoryEntity(Category category) {
+        this.categoryEntity = category;
     }
     
-    public Book getSelectBook() {
-        return selectBook;
+    public Category getSelectCategory() {
+        return selectCategory;
     }
 
-    public void setSelectBook(Book selectBook) {
-        this.selectBook = selectBook;
+    public void setSelectCategory(Category category) {
+        this.selectCategory = category;
     }
     
-    public String save() throws Exception { 
-        this.bookEntity.setCategories(selectCategories);
-        dao.save(this.bookEntity);
-        newBookEntity();
+    public String save() {
+        dao.save(this.categoryEntity);
+        newCatEntity();
         return "index?faces-redirect=true";
     }
     
     public String edit() {
-        dao.update(this.bookEntity);
-        newBookEntity();
+        dao.update(this.categoryEntity);
+        newCatEntity();
         return "index?faces-redirect=true";
     }
     
@@ -118,7 +92,7 @@ public class BookBean implements Serializable {
     }
     
     public String load(Integer id) {
-        this.bookEntity = dao.getById(id);
+        this.categoryEntity = dao.getById(id);
         return "new?faces-redirect=true&includeViewParams=true";
     }
     
@@ -128,7 +102,7 @@ public class BookBean implements Serializable {
      */
     public String loadWithId() {
         FacesContext fc = FacesContext.getCurrentInstance();
-        this.bookEntity = dao.getById(getCountryParam(fc));	
+        this.categoryEntity = dao.getById(getCountryParam(fc));	
 	return "result";
     }
     
@@ -143,13 +117,13 @@ public class BookBean implements Serializable {
     }
     
     public void remove(Integer id) {
-        Book b = dao.getById(id);
+        Category b = dao.getById(id);
         if (b != null) {
             dao.delete(b);
         }
     }
     
-    public void newBookEntity() {
-        this.bookEntity = new Book();
+    public void newCatEntity() {
+        this.categoryEntity = new Category();
     }
 }

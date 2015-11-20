@@ -11,9 +11,11 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -47,8 +49,11 @@ public class Book implements Serializable {
     @Column(name = "maxTime")
     private String maxTime;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    private Collection<BookCategory> bookCategoryCollection;
+    @Column(name = "price")
+    private String price;
+    
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Collection<Category> categories;
 
     public Book() {
     }
@@ -105,14 +110,22 @@ public class Book implements Serializable {
         this.maxTime = maxTime;
     }
 
-    @XmlTransient
-    public Collection<BookCategory> getBookCategoryCollection() {
-        return bookCategoryCollection;
+    public String getPrice() {
+        return price;
     }
 
-    public void setBookCategoryCollection(Collection<BookCategory> bookCategoryCollection) {
-        this.bookCategoryCollection = bookCategoryCollection;
+    public void setPrice(String price) {
+        this.price = price;
     }
+    
+    public Collection<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Collection<Category> categories) {
+        this.categories = categories;
+    }
+        
 
 //    @Override
 //    public int hashCode() {
@@ -138,4 +151,5 @@ public class Book implements Serializable {
 //    public String toString() {
 //        return "com.mycompany.bookstore.entity.Book[ id=" + id + " ]";
 //    }
+
 }
