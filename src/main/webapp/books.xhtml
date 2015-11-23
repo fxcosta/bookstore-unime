@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>LibLix BookStore</title>
+        <link type='text/css' href="css/util.css" rel="stylesheet"/>
+        <link type='text/css' href="css/home.css" rel="stylesheet"/>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/home.js"></script>
+    </h:head>
+    <h:body>
+        <div class="center" style="margin-top: 100px;">
+            <h1 class="gray">Welcome to LibLix</h1>
+            <p class="ft10 gray">Your Online Library</p>
+            <p:inputText placeholder="What do you want to read today?" styleClass="searchInput" style="margin-top: 50px;"/>
+            <br />
+            <p:commandButton value="Search" styleClass="searchButton"/>
+        </div>
+        
+        <br/>
+        
+        <div>
+        <h:form>
+            <p:commandButton value="Novo Livro" id="new-book" actionListener="#{bookBean.newBook}" styleClass="ui-priority-primary" />
+        </h:form>
+            
+            <br/>
+            
+        
+            <p:dataGrid var="book" value="#{bookBean.books}" columns="3" layout="grid"
+                rows="12" paginator="true" id="books"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    Disponible Books
+                </f:facet>
+
+                <p:panel header="#{book.id}" style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <p:graphicImage name="demo/images/car/#{book.name}.gif"/> 
+
+                        <h:outputText value="#{book.name}" />
+
+<!--                        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                            <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{book}" target="#{bookBean.selectBook}" />
+                        </p:commandLink>-->
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+
+            <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty bookBean.selectBook}" columnClasses="label,value">
+                        <f:facet name="header">
+                            <p:graphicImage name="demo/images/car/#{bookBean.selectBook.name}-big.gif"/> 
+                        </f:facet>
+
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{bookBean.selectBook.id}" />
+
+                        <h:outputText value="Year" />
+                        <h:outputText value="#{bookBean.selectBook.name}" />
+
+                        <h:outputText value="Color:" />
+                        <h:outputText value="#{bookBean.selectBook.name}" style="color:#{bookBean.selectBook.name}"/>
+
+                        <h:outputText value="Price" />
+                        <h:outputText value="$#{bookBean.selectBook.name}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        
+            
+        </div>
+        
+    </h:body>
+    <footer>
+        <script>
+            removePanelGridBorder("books");
+        </script>
+    </footer>
+</html>
+

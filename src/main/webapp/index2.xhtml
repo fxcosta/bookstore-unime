@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>LibLix BookStore</title>
+        <h:outputStylesheet library="css" name="util.css"  />
+        <h:outputStylesheet library="css" name="home.css"  />
+        <h:outputStylesheet library="css" name="metro.min.css"  />
+
+        <h:outputScript library="js" name="jquery.min.js" />
+        <h:outputScript library="js" name="metro.min.js" />
+        <h:outputScript library="js" name="util.js" />
+        <h:outputScript library="js" name="home.js" />
+    </h:head>
+    <h:body>
+        <div class="center" style="margin-top: 100px;">
+            <h1 class="gray">Welcome to LibLix</h1>
+            <p class="ft10 gray">Your Online Library</p>
+            <p:inputText placeholder="What do you want to read today?" styleClass="searchInput" style="margin-top: 50px;"/>
+            <br />
+            <p:commandButton value="Search" styleClass="searchButton"/>
+        </div>
+        <p:panelGrid id="books" styleClass="center" style="margin-top: 80px; border: none;">
+            <p:row>
+                <p:column colspan="4">
+                    <p class="center gray">You may like these Stuff</p>
+                </p:column>
+                <p:column rowspan="2">
+                    <table style="float: right;">
+                        <tr>
+                            <td colspan="2"><p class="center ft14 gray" style="margin-bottom: 15px;">Passage to Wonderland</p></td>
+                        </tr>
+                        <tr>
+                            <td><p:outputLabel for="name">Name</p:outputLabel></td>
+                            <td><h:inputText id="name" styleClass="input-control text"></h:inputText>
+                                </td>
+                        </tr>
+                        <tr style="margin-bottom: 15px;">
+                            <td><p:outputLabel for="key" styleClass="txtLeft">Magic Key</p:outputLabel></td>
+                            <td><p:inputText id="key"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p:commandButton value="Let's Go" styleClass="searchButton"/></td>
+                        </tr>
+                    </table>
+                </p:column>
+            </p:row> 
+            <p:row>
+                <p:column>
+                    <div class="box"></div>
+                </p:column>
+                <p:column>
+                    <div class="box"></div>
+                </p:column>
+                <p:column>
+                    <div class="box"></div>
+                </p:column>
+                <p:column>
+                    <div class="box"></div>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+        
+    </h:body>
+    <footer>
+        <script>
+            //removePanelGridBorder("books");
+        </script>
+    </footer>
+</html>
+

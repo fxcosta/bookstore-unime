@@ -35,7 +35,7 @@ public class BookBean implements Serializable {
     
     private Book selectBook;
     
-    private List<Category> selectCategories;
+    public List<Category> selectCategories;
 
 //    public Category[] getSelectCategories() {
 //        return selectCategories;
@@ -100,7 +100,8 @@ public class BookBean implements Serializable {
     }
     
     public String save() throws Exception { 
-        this.bookEntity.setCategories(selectCategories);
+        //System.out.println(selectCategories.size());
+        //this.bookEntity.setCategories(selectCategories);
         dao.save(this.bookEntity);
         newBookEntity();
         return "index?faces-redirect=true";

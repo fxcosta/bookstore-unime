@@ -7,23 +7,14 @@ package com.mycompany.bookstore.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -44,7 +35,7 @@ public class Category implements Serializable {
     private String name;
     
     @ManyToMany(mappedBy = "categories")
-    private Collection<Book> books;
+    private List<Book> books;
 
     public Category() {
     }
@@ -74,11 +65,11 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public Collection<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Collection<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 
