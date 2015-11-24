@@ -6,7 +6,6 @@
 package com.mycompany.bookstore.entity;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,37 +21,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "BookItem")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "BookItem.findAll", query = "SELECT b FROM BookItem b"),
-    @NamedQuery(name = "BookItem.findById", query = "SELECT b FROM BookItem b WHERE b.id = :id"),
-    @NamedQuery(name = "BookItem.findByBookId", query = "SELECT b FROM BookItem b WHERE b.bookId = :bookId"),
-    @NamedQuery(name = "BookItem.findByStatus", query = "SELECT b FROM BookItem b WHERE b.status = :status"),
-    @NamedQuery(name = "BookItem.findByTime", query = "SELECT b FROM BookItem b WHERE b.time = :time")})
 public class BookItem implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
     
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "bookId")
     private int bookId;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
     @Column(name = "status")
     private String status;
     
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
     @Column(name = "time")
     private String time;
     

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <ui:define name="title">LibLix BookStore</ui:define>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/base.xhtml">
+            <ui:define name="menu">
+                <a class="app-bar-element" href="/BookStore/sign/signUp.xhtml">
+                    Sign Up
+                    <span class="mif-user-plus"></span>
+                </a>
+            </ui:define>
+            <ui:define name="content">
+                <div class="center margin20" style="margin-top: 100px;">
+                    <span class="mif-books mif-4x fg-blue"></span>
+                </div>
+                <p:panelGrid id="signIn" styleClass="center">
+                    <p:row>
+                        <p:column>
+                            <h:outputLabel for="name" styleClass="align-left">E-Mail</h:outputLabel>
+                        </p:column>
+                        <p:column styleClass="inputSize">
+                            <div class="input-control text inputSize">
+                                <span class="mif-mail prepend-icon"></span>
+                                <h:inputText id="email" pt:placeholder="your@email.com" required="true"></h:inputText>
+                            </div>
+                        </p:column>
+                    </p:row> 
+                    <p:row>
+                        <p:column>
+                           <h:outputLabel for="key" styleClass="align-left">Password</h:outputLabel>
+                        </p:column>
+                        <p:column styleClass="inputSize"  >
+                            <div class="input-control text inputSize">
+                                <span class="mif-key prepend-icon"></span>
+                                <h:inputSecret id="key" required="true"></h:inputSecret>
+                            </div>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="2">
+                            <h:commandButton value="Let's Go" styleClass="loginButton"></h:commandButton>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </ui:define>
+            <ui:define name="footer">
+                <script>
+                    removePanelGridBorder("signIn");
+                </script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

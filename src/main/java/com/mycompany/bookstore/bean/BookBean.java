@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.bookstore.bean;
 
 import com.mycompany.bookstore.entity.Book;
@@ -10,13 +5,13 @@ import com.mycompany.bookstore.dao.BookDao;
 import com.mycompany.bookstore.dao.CategoryDao;
 import com.mycompany.bookstore.entity.Category;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
 /**
  *
  * @author fx3costa
@@ -24,79 +19,45 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="bookBean")
 @SessionScoped
 public class BookBean implements Serializable {    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     
     private static final long serialVersionUID = 1L;
     
-    public List<Book> books;
-
+    private List<Book> books;
+    private List<Book> searchedBooks;
     public Book bookEntity;
-    
     private Book selectBook;
-    
-    public List<Category> selectCategories;
-
-//    public Category[] getSelectCategories() {
-//        return selectCategories;
-//    }
-//
-//    public void setSelectCategories(Category[] selectCategories) {
-//        this.selectCategories = selectCategories;
-//    }
-
-    public List<Category> getSelectedCategories() {
-        return selectCategories;
-    }
-
-    public void setSelectedCategories(List<Category> selectedCities) {
-        this.selectCategories = selectedCities;
-    }
-    
+    private List<Category> selectCategories;
     
     //@ManagedProperty(value="#{BookDao}")
     public BookDao dao;
     
     public BookBean() {
         dao = new BookDao();
-        newBookEntity();
+        //newBookEntity();
     }
     
     @PostConstruct
     public void init() {
         newBookEntity();
-    }
-
-    public BookDao getDao() {
-        return dao;
-    }
-
-    public void setDao(BookDao dao) {
-        this.dao = dao;
+        //loadBookList();
     }
     
-    public List<Book> getBooks() {
-        return dao.getBooks();
+    public List<Book> search(String value){
+        searchedBooks = new ArrayList<>();
+        for (Book book : books) {
+            if(book.getName().toLowerCase().contains(value.toLowerCase())){
+                searchedBooks.add(book);
+            }
+        }
+        return searchedBooks;
     }
     
-    public List<Category> getCategories() {
-        return new CategoryDao().getCategories();
-    }
-    
-    public Book getBookEntity() {
-        return bookEntity;
-    }
-
-    public void setBookEntity(Book book) {
-        this.bookEntity = book;
-    }
-    
-    public Book getSelectBook() {
-        return selectBook;
-    }
-
-    public void setSelectBook(Book selectBook) {
-        this.selectBook = selectBook;
+    private void loadBookList(){
+        books = new ArrayList<>();
+        books.add(new Book(1, "123456BR", "O Vendedor de Sonhos - O Chamado", 10, "10"));
+        books.add(new Book(2, "6666666BR", "O Vendedor de Sonhos - E a Revolução dos Anônimos", 10, "10"));
+        books.add(new Book(3, "222222BR", "O Vendedor de Sonhos - O Semeador de Ideias", 10, "10"));
+        //Book(Integer id, String isbn, String name, int quantity, String maxTime)
     }
     
     public String save() throws Exception { 
@@ -114,7 +75,7 @@ public class BookBean implements Serializable {
     }
     
     public String create() {
-       //newBookEntity();
+       newBookEntity();
        return "new?faces-redirect=true";
     }
     
@@ -122,7 +83,6 @@ public class BookBean implements Serializable {
         this.bookEntity = dao.getById(id);
         return "new?faces-redirect=true&includeViewParams=true";
     }
-    
     /**
      * Métodos apenas para teste!
      * @return 
@@ -132,7 +92,6 @@ public class BookBean implements Serializable {
         this.bookEntity = dao.getById(getCountryParam(fc));	
 	return "result";
     }
-    
     /**
      * Métodos apenas para teste!
      * @return 
@@ -152,5 +111,57 @@ public class BookBean implements Serializable {
     
     public void newBookEntity() {
         this.bookEntity = new Book();
+    }
+
+    public List<Book> getBooks() {
+        return dao.getBooks();
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public Book getBookEntity() {
+        return bookEntity;
+    }
+
+    public void setBookEntity(Book bookEntity) {
+        this.bookEntity = bookEntity;
+    }
+
+    public BookDao getDao() {
+        return dao;
+    }
+
+    public void setDao(BookDao dao) {
+        this.dao = dao;
+    }
+
+    public List<Book> getSearchedBooks() {
+        return searchedBooks;
+    }
+
+    public void setSearchedBooks(List<Book> searchedBooks) {
+        this.searchedBooks = searchedBooks;
+    }
+
+    public Book getSelectBook() {
+        return selectBook;
+    }
+
+    public void setSelectBook(Book selectBook) {
+        this.selectBook = selectBook;
+    }
+
+    public List<Category> getSelectCategories() {
+        return selectCategories;
+    }
+
+    public void setSelectCategories(List<Category> selectCategories) {
+        this.selectCategories = selectCategories;
+    }
+    
+    public List<Category> getCategories() {
+        return new CategoryDao().getCategories();
     }
 }

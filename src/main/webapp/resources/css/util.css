@@ -7,11 +7,29 @@ and open the template in the editor.
     Created on : Nov 2, 2015, 9:54:20 PM
     Author     : Lucas
 */
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
 .center{
-	margin: 0 auto;
+    margin: 0 auto;
+}
+.txtCenter{
+    text-align: center;
+}
+.txtRight{
+    text-align: right;
+}
+.txtJustify{
+    text-align: justify;
+}
+.txtLeft{
+    text-align: left;
 }
 .gray{
-	color: gray;
+    color: gray;
 }
 .blue{
     color: blue;
@@ -37,19 +55,6 @@ and open the template in the editor.
 .ft18{
     font-size: 18pt;
 }
-.center{
-    text-align: center;
-    margin: 0 auto;
-}
-.txtRight{
-    text-align: right;
-}
-.txtJustify{
-    text-align: justify;
-}
-.txtLeft{
-    text-align: left;
-}
 .bold{
     font-weight: bold;
 }
@@ -60,11 +65,18 @@ and open the template in the editor.
     border: none;
 }
 .searchInput{
-    width: 85%;
+    width: 85% !important;
     height: 30px;
 }
 .searchButton{
     margin: 30px;
     width: 250px;
     height: 35px;
+}
+.loginButton{
+    top: 10px;
+    width: 150px;
+}
+.inputSize{
+    width: 250px !important;
 }

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <ui:define name="title">LibLix BookStore</ui:define>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/base.xhtml">
+            <ui:define name="content">
+                <h:form prependId="false">
+                    <div class="center" style="width: 500px; margin-top: 50px;">
+                        <h:outputText value="Results for: '#{param['string']}'" 
+                                              styleClass="sub-header gray bold" />
+                        <ul class="numeric-list square-marker">
+                            <ui:repeat value="#{bookBean.search(param['string'])}" var="book">
+                                <li>
+                                    <h:outputText value="#{book.name}" styleClass="bold "/><br />
+                                    <h:commandLink value="#{book.isbn}" />
+                                </li>
+                            </ui:repeat>
+                            <c:if test="#{bookBean.searchedBooks.size() == 0}">
+                                <h:outputText value="No book found." styleClass="gray"/>
+                            </c:if>
+                        </ul>
+                    </div>
+                </h:form>
+            </ui:define>
+            <ui:define name="footer">
+                <script>
+                    removePanelGridBorder("searchGrid");
+                </script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

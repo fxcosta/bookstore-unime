@@ -6,9 +6,7 @@
 package com.mycompany.bookstore.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  *
@@ -126,31 +126,23 @@ public class Book implements Serializable {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
-        
 
-//    @Override
-//    public int hashCode() {
-//        int hash = 0;
-//        hash += (id != null ? id.hashCode() : 0);
-//        return hash;
-//    }
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(id)
+                .toHashCode();
+    }
 
-//    @Override
-//    public boolean equals(Object object) {
-//        // TODO: Warning - this method won't work in the case the id fields are not set
-//        if (!(object instanceof Book)) {
-//            return false;
-//        }
-//        Book other = (Book) object;
-//        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "com.mycompany.bookstore.entity.Book[ id=" + id + " ]";
-//    }
-
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Book){
+        final Book other = (Book) obj;
+        return new EqualsBuilder()
+            .append(id, other.id)
+            .isEquals();
+        }else{
+            return false;
+        }
+    }
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet library="css" name="util.css" />
+        <h:outputStylesheet library="css" name="home.css" />
+        <h:outputStylesheet library="third-party" name="bower_components/metro/build/css/metro.min.css" />
+        <h:outputStylesheet library="third-party" name="bower_components/metro/build/css/metro-icons.css" />
+        
+        <h:outputScript library="third-party" name="bower_components/jquery/dist/jquery.min.js" />
+        <h:outputScript library="third-party" name="bower_components/metro/build/js/metro.min.js" />
+        <h:outputScript library="js" name="util.js" />
+        <h:outputScript library="js" name="home.js" />
+        <title><ui:insert name="title">LibLix</ui:insert></title>
+    </h:head>
+    <h:body>
+	<div id="base">
+	    <div id="menu">
+                <div class="app-bar">
+                    <a class="app-bar-element bold" href="/BookStore/index.xhtml">
+                        LibLix
+                        <span class="mif-books"></span>
+                    </a>
+                    <span class="app-bar-divider"></span>
+                    <ui:insert name="menu" >
+                        <a class="app-bar-element" href="/BookStore/sign/signIn.xhtml">
+                            Sign In
+                            <span class="mif-key"></span>
+                        </a>
+                        <a class="app-bar-element" href="/BookStore/sign/signUp.xhtml">
+                            Sign Up
+                            <span class="mif-user-plus"></span>
+                        </a>
+                    </ui:insert>
+                </div>
+	    </div>
+	    <div id="content">
+                <ui:insert name="content" ></ui:insert>
+	    </div>
+	    <div id="footer">
+                <ui:insert name="footer" ></ui:insert>
+    	    </div>
+        </div>
+    </h:body>
+</html>
