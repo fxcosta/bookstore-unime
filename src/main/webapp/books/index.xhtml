@@ -6,11 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>LibLix BookStore</title>
-        <link type='text/css' href="css/util.css" rel="stylesheet"/>
-        <link type='text/css' href="css/home.css" rel="stylesheet"/>
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="js/util.js"></script>
-        <script src="js/home.js"></script>
+        <link type='text/css' href="../resources/css/home.css" rel="stylesheet"/>
+        <link type='text/css' href="../resources/css/util.css" rel="stylesheet"/>
+<!--        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>-->
+        <script src="../resources/js/util.js"></script>
+        <script src="../resources/js/util.js"></script>
     </h:head>
     <h:body>
         <h:messages/>
@@ -42,14 +42,30 @@
 
 			<p:column style="text-align: center;">
 				<h:form>
+                                 
+                                    <p:commandButton value="Categorias" id="ajax" action="#{bookBean.callCategoriesDialog(book.id)}" 
+                                                     styleClass="ui-priority-primary">
+                                    </p:commandButton>
+                                    
                                     <p:commandButton id="btnEdit" value="Editar" action="#{bookBean.load(book.id)}">
                                         <f:param name="id" value="#{book.id}" />
                                     </p:commandButton>
                                     
-                                    <p:commandButton id="btnDelete" value="Remover" actionListener="#{bookBean.remove(book.id)}" update=":growl :table"/>
+                                    <p:commandButton id="btnDelete" value="Remover" action="#{bookBean.remove(book.id)}" update=":growl :table"/>
 				</h:form>
 			</p:column>
 		</p:dataTable>
+        
+        <p:dialog header="Basic Dialog" id="lolDialog" widgetVar="lolDialog" minHeight="40" 
+                  modal="true">
+<!--            <p:dataTable id="tablec" value="#{bookBean.categoriesDialog}"
+			emptyMessage="Nenhuma categoria selecionada" var="category">
+
+			<p:column headerText="Nome" style="text-align: center;">
+                            <h:outputText value="#{category.name}" />
+			</p:column>
+		</p:dataTable>-->
+        </p:dialog>
         
     </h:body>
     <footer>

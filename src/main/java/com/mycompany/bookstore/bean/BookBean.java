@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 /**
  *
  * @author fx3costa
@@ -28,6 +31,8 @@ public class BookBean implements Serializable {
     private Book selectBook;
     
     private List<Category> selectCategories;
+    
+    private List<Category> categoriesDialog;
     
     //@ManagedProperty(value="#{BookDao}")
     public BookDao dao;
@@ -84,6 +89,12 @@ public class BookBean implements Serializable {
         this.bookEntity = dao.getById(id);
         return "new?faces-redirect=true&includeViewParams=true";
     }
+    
+    public void callCategoriesDialog(Integer id) {
+        this.categoriesDialog = dao.getById(id).getCategories();
+        RequestContext.getCurrentInstance().execute("PF('lolDialog').show()");
+    }
+    
     /**
      * Métodos apenas para teste!
      * @return 
@@ -165,4 +176,14 @@ public class BookBean implements Serializable {
     public List<Category> getCategories() {
         return new CategoryDao().getCategories();
     }
+
+    public List<Category> getCategoriesDialog() {
+        return categoriesDialog;
+    }
+
+    public void setCategoriesDialog(List<Category> categoriesDialog) {
+        this.categoriesDialog = categoriesDialog;
+    }
+    
+    
 }

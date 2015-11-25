@@ -7,6 +7,7 @@ package com.mycompany.bookstore.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -49,6 +51,7 @@ public class Book implements Serializable, BaseEntity {
     private String price;
     
     @ManyToMany
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.MERGE})
     @JoinTable(
         name="Book_Category",
         joinColumns=@JoinColumn(name="books_id"),
