@@ -26,6 +26,7 @@ public class BookBean implements Serializable {
     private List<Book> searchedBooks;
     public Book bookEntity;
     private Book selectBook;
+    
     private List<Category> selectCategories;
     
     //@ManagedProperty(value="#{BookDao}")
@@ -62,7 +63,7 @@ public class BookBean implements Serializable {
     
     public String save() throws Exception { 
         //System.out.println(selectCategories.size());
-        //this.bookEntity.setCategories(selectCategories);
+        this.bookEntity.setCategories(selectCategories);
         dao.save(this.bookEntity);
         newBookEntity();
         return "index?faces-redirect=true";

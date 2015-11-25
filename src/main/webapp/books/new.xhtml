@@ -25,7 +25,8 @@
 					<p:outputLabel id="category" value="Categorias " />
                                         <p:selectManyCheckbox  
                                             value="#{bookBean.selectCategories}" 
-                                            layout="pageDirection" id="categories">  
+                                            layout="pageDirection" id="categories"
+                                            converter="ccno" required="true">  
                                             <f:selectItems value="#{bookBean.categories}"  
                                                 var="category" itemLabel="#{category.name}"  
                                                 itemValue="#{category}" />
